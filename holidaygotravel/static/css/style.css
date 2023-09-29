@@ -57,3 +57,43 @@ header nav ul li a:hover{
 header nav .bi-three-dots{
     display: none;
 }
+
+
+header .content{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    border: 1px solid #000;
+}
+
+
+header .content::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    /*border: 1px solid #000;*/
+    background: url('../images/banners/cover.jpg')no-repeat center center/cover;
+    border-radius: 10px;
+    z-index: -1;
+
+}
+
+
+header .content .cont_bx{
+    width: 500px;
+    height: auto;
+    color: #fff;
+    padding: 30px;
+}
+
+header .content .cont_bx h1{
+    line-height: 40px;
+    font-weight: 800;
+}
+
+header .content .cont_bx p{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(241,241,241);
+}
