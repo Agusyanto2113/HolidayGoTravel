@@ -2,12 +2,39 @@
     .offers{
         width: 65%;
     }
+
+    .chatbot{
+        width: 300px;
+        height: 450px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
+    .chat-input textarea {
+        width: 60%;
+    }
+
 }
 
 
 @media screen and (max-width:1373px){
     .offers{
         width: 72%;
+    }
+
+    .chatbot{
+        width: 300px;
+        height: 450px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
+    .chat-input textarea {
+        width: 60%;
     }
 }
 
@@ -22,6 +49,19 @@
 
     .destination{
         width: 55%;
+    }
+
+    .chatbot{
+        width: 300px;
+        height: 450px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
+    .chat-input textarea {
+        width: 60%;
     }
 }
 
