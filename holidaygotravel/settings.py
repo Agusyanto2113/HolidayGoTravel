@@ -126,3 +126,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+GOOGLE_SPEECH_TO_TEXT_KEY_FILE = '/path/to/your-service-account-key.json'

@@ -14,3 +14,16 @@ let menu_bx = document.getElementById('menu_bx');
 menu_btn.addEventListener('click', ()=>{
     menu_bx.classList.toggle('ul_active');
 })
+
+
+
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
+let userMessage;
+
+const handleChat = () =>{
+    userMessage = chatInput.value.trim();
+    console.log(userMessage);
+}
+
+sendChatBtn.addEventListener("click",handleChat);

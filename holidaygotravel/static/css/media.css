@@ -167,6 +167,15 @@
         width: 100%;
     }
 
+    .chatbot{
+        width: 340px;
+        height: 480px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
     .offers h1{
         font-size: 22px;
     }
@@ -189,6 +198,15 @@
 }
 
 @media screen and (max-width:411px){
+    .chatbot{
+        width: 300px;
+        height: 450px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
     .offers{
         margin-top: 80px;
     }
@@ -211,4 +229,18 @@
     .offers {
         margin-top: 15px;
     }
+
+    .chatbot{
+        width: 300px;
+        height: 450px;
+    }
+
+    .chatbot .chat-header span{
+        display: block;
+    }
+
+    .chat-input textarea {
+        width: 60%;
+    }
+
 }
