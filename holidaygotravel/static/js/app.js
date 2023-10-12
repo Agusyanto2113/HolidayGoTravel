@@ -17,25 +17,41 @@ menu_btn.addEventListener('click', ()=>{
 
 
 
-const startButton = document.getElementById('startButton');
-const transcription = document.getElementById('output');
+const startButton = document.getElementById("startButton");
+const output = document.getElementById("output");
+let recognition;
+let timeout;
 
-const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    startButton.addEventListener("click", function() {
+        output.textContent = "Listening for speech...";
+        startSpeechRecognition();
+    });
 
-recognition.onresult = function(event) {
-    const transcript = event.results[0][0].transcript;
-    output.textContent = transcript;
-};
+    function startSpeechRecognition() {
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.onresult = function(event) {
+            clearTimeout(timeout); // Reset the timeout
+            const transcript = event.results[0][0].transcript;
+            output.textContent = transcript;
+            startTimeout();
+        };
 
-recognition.onend = function() {
-    output.textContent = "Speech recognition ended.";
-};
+        recognition.onend = function() {
+            output.textContent = "Enter a message....";
+            startTimeout();
+        };
 
-startButton.addEventListener("click", function() {
-    recognition.start();
-    output.textContent = "Listening for speech...";
-});
+        startTimeout();
+            recognition.start();
+        }
 
+        function startTimeout() {
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                recognition.stop();
+                output.textContent = "";
+            }, 3000); // 3 seconds (adjust as needed)
+        }
 
 
 
