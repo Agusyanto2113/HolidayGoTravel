@@ -17,8 +17,30 @@ menu_btn.addEventListener('click', ()=>{
 
 
 
-const chatInput = document.querySelector(".chat-input textarea");
-const sendChatBtn = document.querySelector(".chat-input span");
+const startButton = document.getElementById('startButton');
+const transcription = document.getElementById('output');
+
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    output.textContent = transcript;
+};
+
+recognition.onend = function() {
+    output.textContent = "Speech recognition ended.";
+};
+
+startButton.addEventListener("click", function() {
+    recognition.start();
+    output.textContent = "Listening for speech...";
+});
+
+
+
+
+const chatInput = document.querySelector(".chat-input .textarea textarea");
+const sendChatBtn = document.querySelector(".chat-input .sendbtn span");
 let userMessage;
 
 const handleChat = () =>{
@@ -27,3 +49,6 @@ const handleChat = () =>{
 }
 
 sendChatBtn.addEventListener("click",handleChat);
+
+
+

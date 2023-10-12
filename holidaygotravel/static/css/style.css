@@ -184,8 +184,12 @@ header nav .bi-three-dots{
     border-top: 1px solid #ccc;
 }
 
-.chat-input textarea{
+.chat-input .textarea {
     width: 75%;
+}
+
+.chat-input .textarea textarea{
+    width: 100%;
     height: 35px;
     border: none;
     outline: none;
@@ -195,22 +199,27 @@ header nav .bi-three-dots{
     
 }
 
-.chat-input span{
+.chat-input .textarea span{
+    line-height: 55px;
+    color: lightblue;
+}
+.chat-input .sendbtn span{
     line-height: 55px;
     color: lightblue;
 }
 
-.chat-input span .sendbtn{
+
+.chat-input .sendbtn span{
     align-self: flex-end;
     line-height: 55px;
     color: lightblue;
     font-size: 1.35rem;
     cursor: pointer;
     left: 0;
-    visibility: hidden;
+    visibility: visible;
 }
 
-.chat-input span .mic{
+.chat-input .mic span{
     align-self: flex-start;
     line-height: 55px;
     color: lightblue;
@@ -221,7 +230,7 @@ header nav .bi-three-dots{
 }
 
 
-.chat-input textarea:valid ~ span .sendbtn{
+.chat-input textarea:valid ~ .chat-input .sendbtn span{
     visibility: visible;
 }
 
