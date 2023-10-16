@@ -17,41 +17,59 @@ menu_btn.addEventListener('click', ()=>{
 
 
 
-const startButton = document.getElementById("startButton");
-const output = document.getElementById("output");
-let recognition;
-let timeout;
+const startRecordingButton = document.getElementById('startButton');
+const transcriptionDiv = document.getElementById('output');
+let isRecording = false;
 
-    startButton.addEventListener("click", function() {
-        output.textContent = "Listening for speech...";
-        startSpeechRecognition();
-    });
+        startRecordingButton.addEventListener('click', () => {
+            if (!isRecording) {                
+                isRecording = true;
 
-    function startSpeechRecognition() {
-        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.onresult = function(event) {
-            clearTimeout(timeout); // Reset the timeout
-            const transcript = event.results[0][0].transcript;
-            output.textContent = transcript;
-            startTimeout();
-        };
+                const recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = 'id-ID';
 
-        recognition.onend = function() {
-            output.textContent = "Enter a message....";
-            startTimeout();
-        };
+                recognition.onresult = function(event) {
+                    const result = event.results[event.results.length - 1];
+                    const transcript = result[0].transcript;
+                    transcriptionDiv.innerHTML = transcript;
 
-        startTimeout();
-            recognition.start();
-        }
+                    if (result.isFinal) {
+                        // Send the audio file to the server for transcription
+                        const formData = new FormData();
+                        formData.append('audio', new Blob([transcript], { type: 'audio/wav' }));
 
-        function startTimeout() {
-            clearTimeout(timeout);
-            timeout = setTimeout(function() {
+                        fetch('/transcribe_audio/', {
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Transcription saved:', data.text);
+                            } else {
+                                console.error('Transcription failed:', data.error);
+                            }
+                        });
+                    }
+                };
+
+                recognition.start();
+            
+                // Stop recording after 3 seconds
+                setTimeout(() => {
+                    recognition.stop();
+                    isRecording = false;
+                    
+                }, 3000); // 3 seconds
+
+            } else {
+                
+                isRecording = false;
                 recognition.stop();
-                output.textContent = "";
-            }, 3000); // 3 seconds (adjust as needed)
-        }
+            }
+        });
 
 
 

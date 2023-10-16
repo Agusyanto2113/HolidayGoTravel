@@ -235,6 +235,10 @@ header nav .bi-three-dots{
     visibility: visible;
 }
 
+.mic {
+    color: #123123;
+}
+
 header .content{
     position: relative;
     width: 100%;
