@@ -104,7 +104,9 @@
             <h2>Chatbot</h2>
             <span class="material-symbols-outlined">close</span>
         </div>
+<!--
         <ul class="chatbox">
+            
             <li class="chat incoming">
                 <span class="material-symbols-outlined">smart_toy</span>
                 <p>Hi there <br> How can i help you?</p>
@@ -113,6 +115,29 @@
                 <p>Lorem ipsum dolor sit amet.</p>
             </li>
         </ul>
+-->
+
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there <br> How can i help you?</p>
+            </li>
+            {% for message in chat_history %}
+                <li class="chat {% if message.user == 'User' %}outgoing{% else %}incoming{% endif %}">
+                    {% if message.user != 'User' %}
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    {% endif %}
+                    <p>{{ message.message }}</p>
+                </li>
+                {% if bot_response %}
+                <li class="chat outgoing">
+                    <p>{{ bot_response }}</p>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+        </ul>
+<!--
         <div class="chat-input">
             <div class="mic">
                 <span id="startButton" class="material-symbols-outlined">mic</span>
@@ -120,10 +145,23 @@
             <div class="textarea">
                 <textarea name="" id="output" placeholder="Enter a message...." required></textarea>
             </div>
+
             <div class="sendbtn">
                 <span id="send-btn" class="material-symbols-outlined">send</span>
             </div>
         </div>
+-->
+        <div class="chat-input">
+            <form action="">
+                <button><span id="startButton" class="material-symbols-outlined">mic</span></button>
+                <textarea name="" id="output" placeholder="Enter a message...." required></textarea>
+                <button><span id="send-btn" class="material-symbols-outlined">send</span></button>
+            </form>
+        </div>
+
+
+
+
     </div>
 <!--End Chatbot Design-->    
 
