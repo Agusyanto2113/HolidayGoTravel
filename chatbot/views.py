@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Transcription
 
+
+
 def transcribe_audio(request):
     if request.method == 'POST' and 'audio' in request.FILES:
         audio_file = request.FILES['audio']
@@ -13,3 +15,5 @@ def transcribe_audio(request):
         Transcription.objects.create(text=transcribed_text)
         return JsonResponse({'success': True, 'text': transcribed_text})
     return JsonResponse({'success': False, 'error': 'Invalid request'})
+
+
